@@ -2,7 +2,7 @@
 
 Project created for the Computer Graphics course at PoliMi.
 
-Deployed at [here](https://gabrieleaquaro.github.io/platformer/)
+Deployed  [here](https://gabrieleaquaro.github.io/platformer/).
 
 
 ## Objective 
