@@ -1,0 +1,314 @@
+/* Fonf definition */
+@import url(//db.onlinewebfonts.com/c/6c02f15fdbc9dd7c482b52b06d8e0a6c?family=Super+Mario+256);
+
+@font-face {
+    font-family: "marioFont";
+    src: url("//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.eot");
+    src: url("//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.svg#Super Mario 256") format("svg"); 
+}
+
+/* Main elements definition */
+body {
+    margin: 0;
+    background-color: gray;
+    font-size: 100%;
+}
+#canvas {
+    display: block;
+    background-color: white;
+}
+.container {
+    position: relative;
+}
+ 
+/* GUI canvas class definition */
+.gui{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    /* z-index: 1; */
+}
+.end-game-gui{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Construct GUI elements */
+.selection-menu{
+    width: auto;
+    height: 8%;
+    background-color: rgb(255, 255, 255, 0.5);
+    position: absolute;
+    border-radius: 2px;
+    top: 3%;
+    left: 4%;
+}
+.construct-title{
+    font-size: 1em;
+    color: #ed4705;
+    font-family: 'marioFont';
+    -webkit-text-stroke: 0.08em black;
+    position: absolute;
+    top: 3%;
+    right: 3%;
+}
+.end-game-title{
+    font-size: 5em;
+    color: #ed4705;
+    font-family: 'marioFont';
+    -webkit-text-stroke: 0.08em black;
+    text-align: center;
+}
+.form-name{
+    font-size: 1em;
+    color: black;
+    font-family: 'marioFont';
+    height: 100%;
+    width: 100%;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    outline: solid 0px black;
+    transition: outline 0.6s linear;
+}
+.form-name:hover{
+    outline-width: 5px;
+}
+.form-image{
+    height: 70%;
+    max-width: 100%;
+}
+.building-block{
+    height: 100%;
+    width: 8em;
+    float: left;
+    background-color: transparent;
+}
+.building-block-render{
+    height: 100%;
+    width: 100%;
+}
+.platform-settings{
+    
+}
+.blocks-list{
+    font-size: 1em;
+    color: black;
+    font-family: 'marioFont';
+    -webkit-text-stroke: 0.08em black;
+    background-color: #eee;
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    height: auto;
+    max-height: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 25vw;
+    border-radius: 5px;
+    border-style: solid;   
+    border-color: grey;
+    border-width: 2px;
+}
+.block-editor{
+    font-size: 1em;
+    color: black;
+    font-family: 'marioFont';
+    -webkit-text-stroke: 0.08em black;
+    background-color: white;
+    position: absolute;
+    top: 15%;
+    left: 3%;
+    height: auto;
+    max-height: 70%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 15vw;
+    border-radius: 5px;
+    border-style: solid;   
+    border-color: grey;
+    border-width: 2px;
+}
+.editor-setting-name{
+    padding: 18px;
+    color: #e8e6e6;
+}
+.editor-subsetting-name{
+    color: #e8e6e6;
+    font-size: 0.8em;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+    background-color: #eee;
+    color: #e8e6e6;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+.active, .collapsible:hover {
+    background-color: #ccc;
+}
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+} 
+
+.empty-block{
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+
+/* Utils class */
+.not-visible{
+    display: none;
+}
+.visible{
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Gear style */
+.gear-container{
+    position: absolute;
+    height: 70px;
+    width: 100px;
+    cursor: pointer;
+    z-index: 999;
+    bottom: 0px;
+    left: 0px;
+}
+.gear{
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 30px;
+    left: 30px;
+    /* background: url(http://i.imgur.com/lOBxb.png); */
+    background: url('./assets/gear.png');
+    -webkit-animation: barrelRoll 2s infinite linear;
+    -webkit-animation-play-state: paused;
+}
+
+.gear-two{
+    top: 22px;
+    left: 56px;
+    -webkit-animation-name: invertBarrelRoll;
+}   
+
+.gear-container:hover > .gear{
+    -webkit-animation-play-state: running;
+}
+
+@-webkit-keyframes barrelRoll {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes invertBarrelRoll {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(-360deg); }
+}
+
+.settings-gui{
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+.center-element{
+    background-color: white;
+    height: auto;
+    width: 20%;
+    text-align: center;
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 5px;
+    border-style: solid;   
+    border-color: black;
+    border-width: 3px;
+}
+.settings-title{
+    font-size: 1em;
+    color: #ed4705;
+    font-family: 'marioFont';
+    -webkit-text-stroke: 0.08em black;
+}
+
+.slider{
+    -webkit-appearance: none;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    height: 15px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 5px;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: grey;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: grey;
+    cursor: pointer;
+}
+
+.sub-menu-voice{
+    font-size: 1.2em;
+    color: grey;
+    font-family: 'marioFont';
+    -webkit-text-stroke: 0.08em black;
+}
+
+.menu-title{
+    font-size: 1.6em;
+    color: #ed4705;
+    font-family: 'marioFont';
+    -webkit-text-stroke: 0.08em black;
+}

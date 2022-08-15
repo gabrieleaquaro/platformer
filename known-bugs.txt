@@ -1,0 +1,3 @@
+- Rotation with quaternion
+- load stuck on a cylinder and cannot fall down from the platform
+- set camera on no object when the activeblock is removed

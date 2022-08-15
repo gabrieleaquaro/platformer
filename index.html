@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="container">
+    <canvas id="c"></canvas>
+    <!-- <canvas id="text">
+      <div id="sel-men" class="selection-menu not-visible"></div>
+    </canvas> -->
+    <div class="gui">
+      <div id="construct-gui" class="gui not-visible">
+        <div id="sel-men" class="selection-menu">
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('cube')">
+            <div class="form-name">
+              <img src="./assets/previews/cube-preview-2.png" class="form-image">
+              <br>
+              CUBE
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('brick')">
+            <div class="form-name">
+              <img src="./assets/previews/brick-preview.png" class="form-image">
+              <br>
+              BRICK
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('cloud')">
+            <div class="form-name">
+              <img src="./assets/previews/cloud-preview.png" class="form-image">
+              <br>
+              CLOUD
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('cylinder-island')">
+            <div class="form-name">
+              <img src="./assets/previews/cylinder-island-preview.png" class="form-image">
+              <br>
+              CYLINDER ISLAND
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('hedge')">
+            <div class="form-name">
+              <img src="./assets/previews/hedge-preview.png" class="form-image">
+              <br>
+              HEDGE
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('mountain')">
+            <div class="form-name">
+              <img src="./assets/previews/mountain-preview.png" class="form-image">
+              <br>
+              MOUNTAIN
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('rock')">
+            <div class="form-name">
+              <img src="./assets/previews/rock-preview.png" class="form-image">
+              <br>
+              ROCK
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('square-island')">
+            <div class="form-name">
+              <img src="./assets/previews/square-island-preview.png" class="form-image">
+              <br>
+              SQUARE ISLAND
+            </div>
+          </div>
+          <div id="cube-block" class="building-block" onclick="selectBuildingBlock('tree')">
+            <div class="form-name">
+              <img src="./assets/previews/tree-preview.png" class="form-image">
+              <br>
+              TREE
+            </div>
+          </div>
+          <div id="platform-settings" class="building-block not-visible" onclick="selectBuildingBlock('cube')">
+            <div>PLATFORM SETTINGS</div>
+          </div>
+        </div>
+        <div class="construct-title">CONSTRUCT MODE ENABLED</div>
+        <div class="blocks-list" id="blocks-list">
+          <div class="empty-block" id="empty-block" ondrop="dropOnEmpty(event)" ondragover="allowDropEmpty(event)"></div>
+        </div>
+        <div class="block-editor not-visible" id="block-editor">
+
+        </div>
+      </div>
+      <div class="end-game-gui not-visible" id="end-game-gui">
+        <div class="end-game-title" id="end-game-title"></div>
+        <br>
+        <input type="button" value="Restart" onclick="restart()">
+      </div>
+      <div class="gear-container" onclick="toggleSettingsMenu()">
+        <div class="gear gear-one"></div>
+        <div class="gear gear-two"></div>
+      </div>
+      <div class="settings-gui not-visible" id="setting-menu">
+        <div class="center-element">
+          <div class="settings-title">
+          <div class="menu-title">SETTINGS MENU</div>
+            <div class="light-selection">
+              <div class="sub-menu-voice">LIGHTS:</div>
+              <br>
+              <select id="light-selection" onchange="lightSelection(event)"></select>
+              <input type="button" value='Add light' onclick="add_light()">
+              <div class="light-settings not-visible" id="light-settings">
+                <select id="light-type" onchange="updateLightType(event)"></select>
+                <div id="light-type-settings"></div>
+              </div>
+            </div>
+            <br>
+            <div class="ambient-selection">
+              <div class="sub-menu-voice">AMBIENT:</div>
+              <br>
+              <select id="ambient-selection" onchange="ambientChange(event)">
+                
+              </select>
+              <div class="ambient-settings" id="ambient-settings">
+
+              </div>
+            </div>
+            <!-- <br>
+            <div class="diffuse-selection">
+              <div class="sub-menu-voice">DIFFUSE:</div>
+              <br>
+              <select id="diffuse-selection" onchange="diffuseChange(event)">
+                
+              </select>
+              <div class="diffuse-settings" id="diffuse-settings">
+
+              </div>
+            </div> -->
+            <!-- <br>
+            <div class="specular-selection">
+              <div class="sub-menu-voice">SPECULAR:</div>
+              <br>
+              <select id="specular-selection" onchange="specularChange(event)">
+                
+              </select>
+              <div class="specular-settings" id="specular-settings">
+
+              </div>
+            </div> -->
+            <br>
+            <input id="loaded-level" type="file" value='Load Level' onchange="load_level(event)">
+            <br>
+            <input type="button" value="Save Level" onclick="save_level()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="lib/utils.js"></script>
+  <script type="text/javascript" src="lib/m4.js"></script>
+  <script type="text/javascript" src="lib/twgl.js"></script>
+  <script type="text/javascript" src="lib/raycast.js"></script>
+  <script type="text/javascript" src="lib/objects.js"></script>
+  <script type="text/javascript" src="lib/saving.js"></script>
+  <script type="text/javascript" src="lib/camera.js"></script>
+  <script type="text/javascript" src="lib/user_input.js"></script>
+  <script type="text/javascript" src="lib/obj-parser.js"></script>
+  <script type="text/javascript" src="lib/main.js"></script>
+  <script type="text/javascript" src="lib/light.js"></script>
+  <script type="text/javascript" src="lib/dom-utils.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font import and preload -->
+  <link href="//db.onlinewebfonts.com/c/6c02f15fdbc9dd7c482b52b06d8e0a6c?family=Super+Mario+256" rel="stylesheet" type="text/css"/>
+  <link rel="preload" href="//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.woff" as="font" crossorigin>
+  <link rel="preload" href="//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.woff2" as="font" crossorigin>
+  <link rel="preload" href="//db.onlinewebfonts.com/t/6c02f15fdbc9dd7c482b52b06d8e0a6c.ttf" as="font" crossorigin>
+</body>
+
+</html>
